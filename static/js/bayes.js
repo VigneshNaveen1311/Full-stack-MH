@@ -3,7 +3,6 @@ function Bayes() {
     var py = parseFloat(document.getElementById("Py").value);
     var pxy = parseFloat(document.getElementById("Pxy").value);
     var pyx = parseFloat(document.getElementById("Pyx").value);
-    var result;
     
     console.log("px", px, "py", py, "pxy", pxy, "pyx", pyx);
 
@@ -11,25 +10,18 @@ function Bayes() {
         document.getElementById("result").innerHTML = "Invalid calculation. Check your input values. <br>Ensure atleast 3 are entered";
         return;
     }
-    var prob;
-    if (px === 0) {
-        result = pxy * py / pyx;
-        prob = "Prior probability P(X): "
-    } else if (py === 0 ) {
-        result = pyx * px / pxy;
-        prob = "Marginal Likelihood P(Y) : "
-    } else if (pxy === 0 ) {
-        result = pyx * px / py;
-        prob = "Posterior probability P(X|Y) : "
-    } else  {
-        result = pxy * py / px;
-        prob = "Likelihood P(Y|X) : "
-    }
+    
+    fetch('/calculate_bayes',{
+        method:'POST',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({px,py,pxy,pyx})
+    })
+    .then(response =>response.json())
+    .then(data => {
+        document.getElementById('result').textContent = data.prob + data.bayes_result
+    })
 
-    if (result > 1) {
-        document.getElementById("result").innerHTML = "Invalid values";
-    } else {
-        document.getElementById("result").innerHTML = prob + result;
-    }
-    document.getElementById("currfile").innerHTML = "JS";
+    
 }

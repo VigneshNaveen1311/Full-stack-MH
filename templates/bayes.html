@@ -4,7 +4,7 @@
         <title>Bayes Calculator</title>
     </head>
     <body>
-        <p id="currfile">HHelloooo</p>
+        <p id="currfile">ENTER VALUES</p>
 
         <div>
             <label for="Px">P(X):</label>
@@ -17,7 +17,7 @@
             <input type="number" id="Pyx" name="Pyx" min="0" max="1" step="0.01" value="0"><br>
             <input type="button" value="Calculate" id="calc" onClick="Bayes()">
         </div>
-        <p id="result">heyo</p>
+        <p id="result">Result will appear here...</p>
         <script src="{{ url_for('static', filename='js/checkvalidity.js') }}"></script>
         <script src="{{ url_for('static', filename='js/bayes.js') }}"></script>
     </body>
