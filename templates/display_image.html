@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Display Image</title>
+    </head>
+    <body>
+        <h1>Uploaded Image</h1>
+        <img src="{{ url_for('static', filename='uploads/' + filename) }}" width = "400" alt="Uploaded Image">
+        <br>
+        <a href="/product_finder_page">Upload another image</a>
+    </body>
+</html>
